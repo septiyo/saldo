@@ -55,8 +55,8 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="history.html">History</a></li>
-            <!-- <li><a href="#">Contact</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -74,7 +74,7 @@
             <li><a href="http://getbootstrap.com/examples/navbar/">Default</a></li>
             <li><a href="http://getbootstrap.com/examples/navbar-static-top/">Static top</a></li>
             <li class="active"><a href="./index_files/index.htm">Fixed top <span class="sr-only">(current)</span></a></li>
-          </ul> -->
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
@@ -84,7 +84,7 @@
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
         <h1>Saldo</h1>
-       <p><h2><div id='DEPO'></div></h2><p>
+       <p><h2>1.500.000</h2><p>
           <!-- <a class="btn btn-lg btn-primary" href="http://getbootstrap.com/components/#navbar" role="button">View navbar docs »</a> -->
         </p>
       </div>
@@ -119,8 +119,6 @@
 					  </div> -->
 					  <button type="submit" class="btn btn-default" id="SAVE">Submit</button>
 				 </form>
-				 
-				 	  <button type="text" class="btn btn-default" id="Refresh">Refresh</button>
 	  </div>
 	  
 	  
@@ -166,15 +164,31 @@
     <script src="boot/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="boot/ie10-viewport-bug-workaround.js"></script>
-    
-  
 	
 	<script>
 	$(document).ready(function(){
 	
-        
-	     	loadData();
-
+		//var jos = "dari get";
+		
+		
+	//$.get("action.php", function(data){
+		$.get("action.php", function(data){
+		
+	
+	    /* alert(data);
+		alert(JSON.stringify(data));  */
+		
+		//var i = $.parseJSON(data); 
+		
+		  var trHTML = '';
+		  var no = '1';
+			  $.each(data, function (i, item) {
+				  trHTML += '<tr><td>' + no + '</td><td>' + item.TGL_ORDER + '</td><td>' + item.ITEM + '</td><td>' + item.HARGA + '</td><td>' + item.ONGKIR + '</td><td>' + item.TOTAL + '</td></tr>';
+				  no++;
+			  });
+			  $('#JOS').append(trHTML);
+	
+	});
 	
 	
 	
@@ -202,47 +216,7 @@
 	
 	});
 	
-	/*caridepo*/
-	//var SISA_SALDO = '';
-	$.get("cari_depo.php", function(data){
 		
-	
-	   /*   alert(data);*/
-       /* 	alert(JSON.stringify(data)); */
-		
-		var DATANE = data;
-		
-	 	 //alert("Save Berhasil"); 
-		/*  alert(DATANE.TOT_TOTAL);   */
-		 
-		 var depo = DATANE.DEPO;
-	     
-		 //var depo = '1500000';
-		 //var biaya = $("#TOT_TOTALX").html();
-		 
-		 
-	   	
-        	$("#DEPO").html(depo);	
-		 
-		 
-	   //alert(biaya);
-	         
-			 /* var sisa_saldo = Number(depo) - Number(biaya); */  
-		
-     
-		
-		//var i = $.parseJSON(data); 
-		
-		  
-	
-	});
-	
-	
-	$("#Refresh").on('click', function(){
-	
-	    location.reload();
-	
-	});	
 	
 	$("#SAVE").on('click', function(){
 	
@@ -260,7 +234,8 @@
 		    alert(ONGKIR);
 		     alert(TOTAL);*/
 		  
-		  	  
+		  
+		  
 		  
 		  var today = new Date();
 		  var dd = today.getDate();
@@ -280,11 +255,18 @@
           $.post("input.php", {tgl: datetime, item: ITEM, harga: HARGA, ongkir: ONGKIR, total:TOTAL}, function(datane) {
 		  
 	           	
-		          	if(datane == "sukses"){
+				//alert(jQuery.parseJSON(datane));
+			
+				//alert(JSON.stringify(datane));  
+				
+				
+				 //location.reload();
+
+
+                 	if(datane == "sukses"){
 							
-				alert('SAVE berhasil ');
-                                   
-                                                                  
+							alert('SAVE berhasil ');
+                                    
 							//window.location='index.htm';
 						}
 						else{
@@ -320,34 +302,7 @@
 		
 	});
 		
-});//end ready function
-
-function loadData(){
-
-
-
-		$.get("action.php", function(data){
-		
-	
-	    /* alert(data);
-		alert(JSON.stringify(data));  */
-		
-		//var i = $.parseJSON(data); 
-		
-		  var trHTML = '';
-		  var no = '1';
-			  $.each(data, function (i, item) {
-				  trHTML += '<tr><td>' + no + '</td><td>' + item.TGL_ORDER + '</td><td>' + item.ITEM + '</td><td>' + item.HARGA + '</td><td>' + item.ONGKIR + '</td><td>' + item.TOTAL + '</td></tr>';
-				  no++;
-			  });
-			  $('#JOS').append(trHTML);
-	
-	});
-
-
-
-
-}//end function
+});
 		
 	
 	

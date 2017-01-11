@@ -3,12 +3,17 @@ header('Content-Type: application/json');
 include "koneksi.php";
 ini_set('display_errors', '0');
 
-/* $res = $_GET['res'];
+/*  $sisa = $_GET['SISA_SALDO'];
+ 
 
-echo json_encode($res); */
+   $sql_update = "UPDATE deposit SET DEPO = '$sisa' WHERE ID = '1'";
+   $hasil_update = mysqli_query($mysqli, $sql_update); */
+   
+   
 
 
-$sql = "SELECT SUM(HARGA)AS HARGA, SUM(TOTAL)AS TOTAL FROM saldo_gh;";
+
+$sql = "SELECT DEPO FROM deposit;";
 $hasil = mysqli_query($mysqli, $sql);
 //$results = array();
 
@@ -18,8 +23,8 @@ $hasil = mysqli_query($mysqli, $sql);
 while($row=mysqli_fetch_assoc($hasil)){
 	
 			$results= array(
-					'TOT_HARGA'=> $row[HARGA],
-					'TOT_TOTAL' => $row[TOTAL],
+					'DEPO'=> $row[DEPO],
+					/* 'TOT_TOTAL' => $row[TOTAL], */
 			
 
 			);

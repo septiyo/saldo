@@ -54,7 +54,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="index.html">Home</a></li>
             <li><a href="history.html">History</a></li>
             <!-- <li><a href="#">Contact</a></li>
             <li class="dropdown">
@@ -69,8 +69,8 @@
                 <li><a href="#">One more separated link</a></li>
               </ul>
             </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
+          </ul> -->
+          <!-- <ul class="nav navbar-nav navbar-right">
             <li><a href="http://getbootstrap.com/examples/navbar/">Default</a></li>
             <li><a href="http://getbootstrap.com/examples/navbar-static-top/">Static top</a></li>
             <li class="active"><a href="./index_files/index.htm">Fixed top <span class="sr-only">(current)</span></a></li>
@@ -82,15 +82,15 @@
     <div class="container">
 
       <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
+    <!--   <div class="jumbotron">
         <h1>Saldo</h1>
        <p><h2><div id='DEPO'></div></h2><p>
-          <!-- <a class="btn btn-lg btn-primary" href="http://getbootstrap.com/components/#navbar" role="button">View navbar docs »</a> -->
+          
         </p>
-      </div>
+      </div> -->
 	  
 	  
-	  <div class="container">
+	  <!-- <div class="container">
 				  <form id='INPUTAN'>
 					  <div class="form-group">
 						<label for="ITEM">Item :</label>
@@ -113,15 +113,12 @@
 					  
 					  
 					  
-					  
-					  <!-- <div class="checkbox">
-						<label><input type="checkbox"> Remember me</label>
-					  </div> -->
+			
 					  <button type="submit" class="btn btn-default" id="SAVE">Submit</button>
 				 </form>
 				 
 				 	  <button type="text" class="btn btn-default" id="Refresh">Refresh</button>
-	  </div>
+	  </div> -->
 	  
 	  
 	  
@@ -179,7 +176,7 @@
 	
 	
 	/*caritotal*/
-	$.get("cari_total.php", function(data){
+	$.get("cari_total_history.php", function(data){
 		
 	
 	   /*   alert(data);*/
@@ -218,18 +215,19 @@
 		 var depo = DATANE.DEPO;
 	     
 		 //var depo = '1500000';
-		 //var biaya = $("#TOT_TOTALX").html();
-		 
-		 
-	   	
-        	$("#DEPO").html(depo);	
+		 var biaya = $("#TOT_TOTALX").html();
 		 
 		 
 	   //alert(biaya);
 	         
-			 /* var sisa_saldo = Number(depo) - Number(biaya); */  
-		
-     
+			 var sisa_saldo = Number(depo) - Number(biaya);        
+	
+	   
+	
+	
+	
+        	$("#DEPO").html(sisa_saldo);		
+    
 		
 		//var i = $.parseJSON(data); 
 		
@@ -260,7 +258,8 @@
 		    alert(ONGKIR);
 		     alert(TOTAL);*/
 		  
-		  	  
+		  
+		  
 		  
 		  var today = new Date();
 		  var dd = today.getDate();
@@ -280,7 +279,17 @@
           $.post("input.php", {tgl: datetime, item: ITEM, harga: HARGA, ongkir: ONGKIR, total:TOTAL}, function(datane) {
 		  
 	           	
-		          	if(datane == "sukses"){
+				//alert(jQuery.parseJSON(datane));
+			
+				//alert(JSON.stringify(datane));  
+				
+				
+				 //location.reload();
+				 
+				   	
+
+
+                 	if(datane == "sukses"){
 							
 				alert('SAVE berhasil ');
                                    
@@ -326,7 +335,7 @@ function loadData(){
 
 
 
-		$.get("action.php", function(data){
+		$.get("action_history.php", function(data){
 		
 	
 	    /* alert(data);

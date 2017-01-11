@@ -8,7 +8,7 @@ ini_set('display_errors', '0');
 echo json_encode($res); */
 
 
-$sql = "SELECT SUM(HARGA)AS HARGA, SUM(TOTAL)AS TOTAL FROM saldo_gh;";
+$sql = "SELECT SUM(HARGA)AS HARGA, SUM(TOTAL)AS TOTAL FROM saldo_history;";
 $hasil = mysqli_query($mysqli, $sql);
 //$results = array();
 

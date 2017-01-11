@@ -1,7 +1,10 @@
 <?php
 
 include "koneksi.php";
+
 //include "koneksi.php";
+
+//print_r($_POST);
 
    $tgl    = $_POST['tgl'];
    $item   = $_POST['item'];
@@ -18,12 +21,28 @@ include "koneksi.php";
      $sql = "INSERT INTO saldo_gh SET TGL_ORDER = '$tgl',
 	                                  ITEM = '$item',
                                       HARGA = '$harga',
-									  ONGKIR = '$ongkir',
-									  TOTAL = '$total'";
+								  ONGKIR = '$ongkir',
+								  TOTAL = '$total'";
+								  
+								     
+     $sql2 = "INSERT INTO saldo_history SET TGL_ORDER = '$tgl',
+	                                  ITEM = '$item',
+                                      HARGA = '$harga',
+								  ONGKIR = '$ongkir',
+								  TOTAL = '$total'";
+				  
+				  
+				  
+		
+				  
 
 
 
     $hasil = mysqli_query($mysqli, $sql);
+    
+	$hasil2 = mysqli_query($mysqli, $sql2);
+    
+    
 
      	
 		
